@@ -10,7 +10,7 @@ const NAVIGATION_LAYER_COUNT := 32
 const AVOIDANCE_LAYER_COUNT := 32
 const INPUT_WAIT_SECONDS = 1.5
 
-const VALID_IDENTIFIER_PATTERN := "[^a-z,A-Z,0-9,\\s]"
+const VALID_IDENTIFIER_PATTERN := "[^a-z,A-Z,0-9,_,\\s]"
 
 var previous_text := ""
 var wait_tickets := 0
