@@ -23,5 +23,4 @@ mono_crash.*.json
 
 # plugin specific
 addons/layer_names/generated/layer_names.gd
-# addons/layer_names/generated/layer_names.gd.uid Could be a useful reference with same uid when needed?
-# example/
+addons/layer_names/generated/layer_names.gd.uid
