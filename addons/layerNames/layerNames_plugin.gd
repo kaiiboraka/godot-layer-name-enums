@@ -7,10 +7,10 @@ const OUTPUT_FILE_CSHARP := OUTPUT_PATH + "LayerNames.cs"
 const SINGLETON_NAME := "LayerNames"
 const SETTING_KEY_FORMAT := "layer_names/%s/layer_%s"
 const OUTPUT_SETTING_KEY := "addons/project_layer_names/output"
+const NAMESPACE_SETTING_KEY := "addons/project_layer_names/C#_namespace"
 const INPUT_WAIT_SECONDS := 1.5
 const VALID_IDENTIFIER_PATTERN := "[^a-z,A-Z,0-9,_,\\s]"
 const BIT_SHIFT_OFFSET := 1
-
 
 # Layer type definitions: layer_type -> max_count
 const LAYER_TYPES := {
@@ -65,6 +65,16 @@ func _register_project_settings() -> void:
 		ProjectSettings.set_setting(OUTPUT_SETTING_KEY, OutputLanguage.GDScript)
 		ProjectSettings.add_property_info(output_hints)
 		ProjectSettings.save()
+		
+	output_hints = {
+		"name": NAMESPACE_SETTING_KEY,
+		"type": TYPE_STRING,
+		"default": "Godot"
+	}
+	if not ProjectSettings.has_setting(NAMESPACE_SETTING_KEY):
+		ProjectSettings.set_setting(NAMESPACE_SETTING_KEY, "Godot")
+		ProjectSettings.add_property_info(output_hints)
+		ProjectSettings.save()
 
 func _update_layer_names() -> void:
 	wait_tickets += 1
@@ -112,7 +122,9 @@ func _generate_gdscript_file() -> void:
 
 func _generate_csharp_file() -> void:
 	var text_parts := PackedStringArray()
-	text_parts.append("using Godot;\n\nnamespace Godot {\n\tpublic partial class LayerNames : Node {\n\n")
+	var namespace_setting := ProjectSettings.get_setting(NAMESPACE_SETTING_KEY, "Godot");
+
+	text_parts.append("using Godot;\n\nnamespace "+namespace_setting+" {\n\tpublic partial class LayerNames : Node {\n\n")
 	
 	for layer_type in LAYER_TYPES:
 		text_parts.append(_create_enum_string(OutputLanguage.CSharp, layer_type, LAYER_TYPES[layer_type]))
@@ -170,6 +182,9 @@ func _generate_enum_entry(language: OutputLanguage, layer_number: int, layer_nam
 	
 	var entry_indent := "\t\t\t" if language == OutputLanguage.CSharp else "\t"
 	var bit_value := 1 << (layer_number - BIT_SHIFT_OFFSET)
+	
+	if (layer_number == 32):
+		bit_value = bit_value - 1;
 	
 	var entry_parts := PackedStringArray()
 	entry_parts.append("%s%s_NUM = %s,\n" % [entry_indent, key, layer_number])
