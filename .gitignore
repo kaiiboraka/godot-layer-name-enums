@@ -22,5 +22,4 @@ mono_crash.*.json
 .DS_Store
 
 # plugin specific
-addons/layer_names/generated/layer_names.gd
-addons/layer_names/generated/layer_names.gd.uid
+addons/layerNames/generated/*

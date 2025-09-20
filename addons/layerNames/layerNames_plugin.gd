@@ -1,7 +1,8 @@
 @tool
 extends EditorPlugin
 
-const OUTPUT_FILE := "res://addons/layer_names/generated/layer_names.gd"
+const OUTPUT_PATH := "res://addons/layerNames/generated/"
+const OUTPUT_FILE := OUTPUT_PATH + "layerNames.gd"
 const SINGLETON_NAME := "LayerNames"
 const SETTING_KEY_FORMAT := "layer_names/%s/layer_%s"
 const RENDER_LAYER_COUNT := 20
@@ -19,6 +20,9 @@ var layer_settings_cache := {}
 func _enter_tree() -> void:
 	print("LayerNames plugin activated.")
 	ProjectSettings.settings_changed.connect(_update_layer_names)
+	
+	DirAccess.make_dir_recursive_absolute(OUTPUT_PATH)
+	
 	if not FileAccess.file_exists(OUTPUT_FILE):
 		_update_layer_names()
 
@@ -99,8 +103,7 @@ func _generate_enum_entry(layer_number: int, layer_name: String) -> String:
 func _sanitise(input: String) -> String:
 	var regex := RegEx.new()
 	regex.compile(VALID_IDENTIFIER_PATTERN)
-
-	var output := regex.sub(input, "", true)
+	var output := regex.sub(input.replace("-", "_"), "", true)
 	output = output.to_snake_case().to_upper()
 
 	return output if output.is_valid_identifier() else ""

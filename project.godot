@@ -10,62 +10,28 @@ config_version=5
 
 [application]
 
-config/name="Enum generator addon"
-config/features=PackedStringArray("4.4", "Forward Plus")
-boot_splash/bg_color=Color(0.0924416, 0.147392, 0.187741, 1)
+config/name="Project Layer Names"
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-LayerNames="*res://addons/layer_names/generated/layer_names.gd"
-
-[display]
-
-window/size/viewport_width=1200
-window/size/viewport_height=720
-window/stretch/mode="canvas_items"
+LayerNames="*res://addons/layerNames/generated/layerNames.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/layer_names/plugin.cfg")
-
-[global_group]
-
-Player=""
-
-[gui]
-
-theme/default_font_antialiasing=2
-theme/default_font_multichannel_signed_distance_field=true
-
-[input]
-
-toggle_fullscreen={
-"deadzone": 0.2,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194342,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-]
-}
-restart_game={
-"deadzone": 0.2,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
-]
-}
-
-[internationalization]
-
-locale/translations=PackedStringArray("res://locales/translations.ar.translation", "res://locales/translations.bg.translation", "res://locales/translations.br.translation", "res://locales/translations.bs.translation", "res://locales/translations.cs.translation", "res://locales/translations.da.translation", "res://locales/translations.de.translation", "res://locales/translations.el.translation", "res://locales/translations.en.translation", "res://locales/translations.es.translation", "res://locales/translations.fi.translation", "res://locales/translations.fr.translation", "res://locales/translations.he.translation", "res://locales/translations.hu.translation", "res://locales/translations.it.translation", "res://locales/translations.ja.translation", "res://locales/translations.ko.translation", "res://locales/translations.lzh.translation", "res://locales/translations.nb.translation", "res://locales/translations.nl.translation", "res://locales/translations.pl.translation", "res://locales/translations.pt.translation", "res://locales/translations.ro.translation", "res://locales/translations.ru.translation", "res://locales/translations.sv.translation", "res://locales/translations.th.translation", "res://locales/translations.tr.translation", "res://locales/translations.zh.translation")
+enabled=PackedStringArray("res://addons/layerNames/plugin.cfg")
 
 [layer_names]
 
-2d_render/layer_1="bodies_active"
-2d_render/layer_2="bodies_dead"
-2d_render/layer_3="ground"
-2d_render/layer_4="arrows"
-2d_render/layer_5="temp"
-2d_render/layer_6="nononon"
-2d_render/layer_10="ccc"
+2d_render/layer_1="Player"
+2d_render/layer_2="Enemies"
+2d_render/layer_3="Walls"
+2d_render/layer_4="camelsAreCool"
+2d_render/layer_5="PascalCouldPaint"
+2d_render/layer_6="snakes_are_cool"
+2d_render/layer_7="kebabs-are-yum"
 
 [rendering]
 
-textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.0823529, 0.0941176, 0.160784, 1)
+renderer/rendering_method="mobile"
