@@ -1,8 +1,15 @@
 # Godot Layer Name Enums
 
-Automatically generate user friendly lookups of project layer names.
+Automatically generate user-friendly lookups of project layer names.
+Each layer will have its layer number and its bit available from the Enum
 
-![useage](https://github.com/user-attachments/assets/482c9bc3-ae43-4132-b716-04e4a5caa298)
+```gdscript
+func _ready() -> void:
+	var render_layer_number = LayerNames.RENDER_2D.LAYER_8_NUM # 8
+	var render_layer_bit = LayerNames.RENDER_2D.LAYER_8_BIT # 128
+```
+
+<img width="1191" height="512" alt="image" src="https://github.com/user-attachments/assets/5e495950-8c13-4c71-a726-72595161ea15" />
 
 
 ## Installation

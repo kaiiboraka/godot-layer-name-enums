@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Project Layer Names"
+config/features=PackedStringArray("4.5", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+LayerNames="*res://addons/layerNames/generated/layerNames.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/layerNames/plugin.cfg")
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Enemies"
+2d_render/layer_3="Walls"
+2d_render/layer_4="camelsAreCool"
+2d_render/layer_5="PascalCouldPaint"
+2d_render/layer_6="snakes_are_cool"
+2d_render/layer_7="kebabs-are-yum"
+
+[rendering]
+
+renderer/rendering_method="mobile"
