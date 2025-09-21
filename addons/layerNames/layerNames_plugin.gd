@@ -184,8 +184,6 @@ func _generate_enum_entry(language: OutputLanguage, layer_number: int, layer_nam
 	
 	var entry_indent := "\t\t\t" if language == OutputLanguage.CSharp else "\t"
 	var bit_value := 1 << (layer_number - BIT_SHIFT_OFFSET)
-	#if (layer_number == 32):
-		#bit_value = bit_value - 1;
 	
 	var entry_parts := PackedStringArray()
 	entry_parts.append("%s%s_NUM = %s,\n" % [entry_indent, key, layer_number])
