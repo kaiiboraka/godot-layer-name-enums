@@ -145,10 +145,12 @@ func _create_enum_string(language: OutputLanguage, layer_type: String, max_layer
 	var enum_indent := "\t\t" if language == OutputLanguage.CSharp else ""
 	var entry_indent := "\t\t\t" if language == OutputLanguage.CSharp else "\t"
 	var public_keyword := "public " if language == OutputLanguage.CSharp else ""
+	var base_class := " : uint" if language == OutputLanguage.CSharp else ""
 	
 	var enum_parts := PackedStringArray()
 	enum_parts.append("%s%senum " % [enum_indent, public_keyword])
 	enum_parts.append(enum_name)
+	enum_parts.append(base_class)
 	enum_parts.append(" {\n")
 	enum_parts.append("%sNONE_NUM = 0,\n" % entry_indent)
 	enum_parts.append("%sNONE_BIT = 0,\n" % entry_indent)
@@ -182,9 +184,8 @@ func _generate_enum_entry(language: OutputLanguage, layer_number: int, layer_nam
 	
 	var entry_indent := "\t\t\t" if language == OutputLanguage.CSharp else "\t"
 	var bit_value := 1 << (layer_number - BIT_SHIFT_OFFSET)
-	
-	if (layer_number == 32):
-		bit_value = bit_value - 1;
+	#if (layer_number == 32):
+		#bit_value = bit_value - 1;
 	
 	var entry_parts := PackedStringArray()
 	entry_parts.append("%s%s_NUM = %s,\n" % [entry_indent, key, layer_number])
